@@ -32,18 +32,18 @@
             }
 
             .switch-radius {
+                position: absolute;
                 width: 15px;
                 height: 15px;
+                background-color: rgba(255, 255, 255, 1);
                 border-radius: 100%;
-                position: absolute;
             }
-        }
-        .switch-true {
-            background-color: rgba(255, 255, 255, 1);
-        }
-        .switch-false {
-            background-color: rgba(255, 255, 255, 1);
-            // background-color: @navHoverFontColor;
+            .switch-true {
+                right: 0;
+            }
+            .switch-false {
+                left: 0;
+            }
         }
     }
 </style>
