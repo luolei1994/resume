@@ -84,7 +84,7 @@ const navData: Array<INavData> = [
         data: {}
     }
 ]
-const routeName: string = route.name || "";
+const routeName: string = route.name as string;
 let isClassic: boolean = false;
 if (routeName == "classic") {
     isClassic = true;
