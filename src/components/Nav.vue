@@ -13,16 +13,15 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="nav-item switch">
-                <i v-if="isClassic" class="fa-solid fa-toggle-off"></i>
-                <i v-else class="fa-solid fa-toggle-on"></i>
+                <!-- <i v-if="isClassic" class="fa-solid fa-toggle-off"></i>
+                <i v-else class="fa-solid fa-toggle-on"></i> -->
+                <Switch v-model="isClassic"></Switch>
             </div>
         </div>
     </div>
 </template>
 <style lang="less" scoped>
-@navHeight: 44px;
-@fontColor: rgba(255, 255, 255, 0.8);
-@hoverFontColor: rgba(255, 255, 255, 1);
+@import "../assets/common.less";
 .nav-component {
     height: @navHeight;
     background-color: rgba(22, 22, 23, .8);
@@ -43,11 +42,11 @@
             text-align: center;
             font-size: 12px;
             cursor: pointer;
-            color: @fontColor;
+            color: @navFontColor;
             height: @navHeight;
             line-height: @navHeight;
             &:hover {
-                color: @hoverFontColor;
+                color: @navHoverFontColor;
             }
         }
         .logo {
@@ -57,7 +56,7 @@
             width: 40px;
         }
         .switch {
-            width: 20px;
+            width: 40px;
         }
     }
 } 
@@ -85,8 +84,8 @@ const navData: Array<INavData> = [
     }
 ]
 const routeName: string = route.name as string;
-let isClassic: boolean = false;
+let isClassic = ref(false);
 if (routeName == "classic") {
-    isClassic = true;
+    isClassic = ref(true);
 }
 </script>
