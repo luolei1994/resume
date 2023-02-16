@@ -1,0 +1,127 @@
+{
+    "content": [
+        {
+            "name": "技术栈",
+            "score": true,
+            "scoreInfo": "score",
+            "scoreText": "技术水平",
+            "data": {
+                "content": [
+                    {
+                        "name": "JavaScript",
+                        "router": "",
+                        "score": 100,
+                        "description": ""
+                    },
+                    {
+                        "name": "TypeScript",
+                        "router": "",
+                        "score": 40,
+                        "description": ""
+                    },
+                    {
+                        "name": "jQuery",
+                        "router": "",
+                        "score": 70,
+                        "description": ""
+                    },
+                    {
+                        "name": "Vue 2.x",
+                        "router": "",
+                        "score": 95,
+                        "description": ""
+                    },
+                    {
+                        "name": "Vue 3.x",
+                        "router": "",
+                        "score": 80,
+                        "description": ""
+                    },
+                    {
+                        "name": "React",
+                        "router": "",
+                        "score": 20,
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        {
+            "name": "任职经历",
+            "score": true,
+            "scoreInfo": "duration",
+            "scoreText": "任职时间",
+            "data": {
+                "content": [
+                    {
+                        "name": "南京博琨信息科技有限公司",
+                        "router": "",
+                        "description": "",
+                        "date": "2016.06 ~ 2018.10",
+                        "reasonOfLeft": "",
+                        "job": "前端开发工程师"
+                    },
+                    {
+                        "name": "南京争锋信息科技有限公司",
+                        "router": "",
+                        "description": "",
+                        "date": "2018.10 ~ 2020.03",
+                        "reasonOfLeft": "",
+                        "job": "前端开发工程师"
+                    },
+                    {
+                        "name": "江苏四海商舟电子商务有限公司",
+                        "router": "",
+                        "description": "",
+                        "date": "2020.05 ~ 2023.03",
+                        "reasonOfLeft": "",
+                        "job": "前端开发工程师"
+                    },
+                    {
+                        "name": "南京泰麟科技有限公司",
+                        "router": "",
+                        "description": "",
+                        "date": "2023.03 ~ 至今",
+                        "reasonOfLeft": "",
+                        "job": "前端开发工程师"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "项目经历",
+            "score": true,
+            "scoreInfo": "score",
+            "scoreText": "项目难度/项目时间",
+            "data": {
+                "content": []
+            }
+        },
+        {
+            "name": "关于我",
+            "score": false,
+            "data": {
+                "content": [
+                    {
+                        "name": "联系方式",
+                        "router": "",
+                        "data": {
+                            "电子邮箱": "18014737128@163.com",
+                            "电话": "18014737128",
+                            "github": "https://github.com/luolei1994"
+                        }
+                    },
+                    {
+                        "name": "个人信息",
+                        "router": "",
+                        "data": {
+                            "姓名": "罗磊",
+                            "年龄": "29",
+                            "坐标": "南京"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

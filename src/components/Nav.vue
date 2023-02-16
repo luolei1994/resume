@@ -1,11 +1,18 @@
 <template>
-    <div :class="`nav-component ${isShowExtendNav ? 'extend-active' : 'extend-inactive'}`" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
+    <div
+        :class="`nav-component ${isShowExtendNav ? 'extend-active' : 'extend-inactive'}`"
+        @mouseleave="handleMouseLeave"
+    >
         <div class="nav-content">
             <div class="nav-item logo">
                 <i class="fa-solid fa-house"></i>
             </div>
             <div class="nav-auto-container">
-                <div class="nav-item" v-for="navItem in navData">
+                <div
+                    class="nav-item"
+                    v-for="navItem in resumeData"
+                    @mouseenter="handleMouseEnter(navItem)"
+                >
                     <a class="nav-item-name">{{ navItem.name }}</a>
                 </div>
             </div>
@@ -20,11 +27,56 @@
         </div>
         <Transition name="pull">
             <div class="nav-extend" v-if="isShowExtendNav">
-                
+                <div class="nav-extend-item" v-for="item in extendNavData.data.content">
+                    <div class="nav-extend-item-name">{{item.name}}</div>
+                </div>
             </div>
         </Transition>
     </div>
 </template>
+
+<script setup lang="ts">
+import { ref, type Ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+class NavData {
+    public name: string;
+    public data: InavDataItem;
+    public constructor (name: string, data: InavDataItem) {
+        this.name = name;
+        this.data = data;
+    }
+}
+const route = useRoute();
+const store = useStore();
+
+const resumeData: Array<NavData> = store.state.resumeData;
+console.log(resumeData);
+const routeName: string = route.name as string;
+
+// 是否经典版
+let isClassic: Ref<boolean> = ref(false);
+// 是否展示扩展Nav区
+let isShowExtendNav: Ref<boolean> = ref(false);
+// 扩展区数据
+let extendNavData: Ref<NavData> = ref(new NavData('', { name: '', content: [] }));
+if (routeName == 'classic') {
+    isClassic.value = true;
+}
+
+// 显示扩展区
+function handleMouseEnter(navItem: NavData) {
+    isShowExtendNav.value = true;
+    extendNavData.value = navItem;
+    console.log(navItem);
+}
+// 隐藏扩展区
+function handleMouseLeave() {
+    setTimeout(() => {
+        isShowExtendNav.value = false;
+    }, 200);
+}
+</script>
 <style lang="less" scoped>
 @import '../assets/common.less';
 
@@ -94,6 +146,14 @@
         width: 100%;
         height: @navExtendHeight;
         background-color: @extendActiveBackgroundColor;
+
+        &-item {
+
+            &-name {
+                font-size: 14px;
+                color: @navFontColor; 
+            }
+        }
     }
 
     .pull-enter-active {
@@ -125,53 +185,6 @@
             height: 0;
             opacity: 0;
         }
-        
     }
-
 }
 </style>
-<script setup lang="ts">
-import { ref, type Ref } from 'vue';
-import { useRoute } from 'vue-router';
-const route = useRoute();
-const navData: Array<INavData> = [
-    {
-        name: '技术栈',
-        data: {}
-    },
-    {
-        name: '任职经历',
-        data: {}
-    },
-    {
-        name: '项目经历',
-        data: {}
-    },
-    {
-        name: '联系我',
-        data: {}
-    }
-];
-const routeName: string = route.name as string;
-// 是否经典版
-let isClassic: Ref<boolean> = ref(false);
-if (routeName == 'classic') {
-    isClassic.value = true;
-}
-// 是否展示扩展Nav区
-let isShowExtendNav: Ref<boolean> = ref(false);
-// 更改原本背景颜色
-let changeBgColor: Ref<boolean> = ref(false);
-// 显示扩展区
-function handleMouseEnter() {
-    isShowExtendNav.value = true;
-    console.log('mouseEnter');
-}
-// 隐藏扩展区
-function handleMouseLeave() {
-    setTimeout(() => {
-        isShowExtendNav.value = false;
-        console.log('mouseLeave');
-    }, 200);
-}
-</script>

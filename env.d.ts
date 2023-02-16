@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-interface INavData {
-    name: string;
-    data: object;
+interface InavDataItem {
+    name: string,
+    content: Array<any>
 }
