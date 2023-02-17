@@ -17,8 +17,3 @@ export class NavData {
         this.data = data;
     }
 }
-
-export interface IExtendData {
-    showMore: boolean;
-    content: NavData
-};

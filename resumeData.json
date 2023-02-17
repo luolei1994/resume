@@ -26,15 +26,9 @@
                     "description": ""
                 },
                 {
-                    "name": "Vue 2.x",
+                    "name": "Vue",
                     "router": "",
                     "score": 95,
-                    "description": ""
-                },
-                {
-                    "name": "Vue 3.x",
-                    "router": "",
-                    "score": 80,
                     "description": ""
                 },
                 {

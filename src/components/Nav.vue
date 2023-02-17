@@ -24,7 +24,7 @@
             </div>
         </div>
         <Transition name="pull">
-            <ExtendNav :isShowExtendNav="isShowExtendNav" :extendData="extendData"></ExtendNav>
+            <ExtendNav :isShowExtendNav="isShowExtendNav" :extendNavData="extendNavData"></ExtendNav>
         </Transition>
     </div>
 </template>
@@ -33,13 +33,12 @@
 import { ref, type Ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
-import { NavData, type IExtendData } from '../entity/Nav';
+import { NavData } from '../entity/Nav';
 import ExtendNav from './ExtendNav.vue';
 const route = useRoute();
 const store = useStore();
 
 const resumeData: Array<NavData> = store.state.resumeData;
-console.log(resumeData);
 const routeName: string = route.name as string;
 
 // 是否经典版
@@ -47,35 +46,25 @@ let isClassic: Ref<boolean> = ref(false);
 // 是否展示扩展Nav区
 let isShowExtendNav: Ref<boolean> = ref(false);
 // 扩展区数据
-let extendNavData: NavData = new NavData('', []);   
+let extendNavData: Ref<NavData> = ref(new NavData('', []));
 if (routeName == 'classic') {
     isClassic.value = true;
 }
-let extendData: Ref<IExtendData> = ref({ showMore: false, content: extendNavData});
 
 // 显示扩展区
 function handleMouseEnter(navItem: NavData) {
     isShowExtendNav.value = true;
-    if (navItem.data.length > 6) {
-        extendData.value.showMore = true;
-        extendData.value.content.data = navItem.data.filter((item, index) => {
-            return index <= 6;
-        })
-    }
-    else {
-        extendData.value.content = navItem;
-    }
-    console.log("extendData", extendData.value.content.data);
+    extendNavData.value = navItem;
+    console.log("extendNavData", extendNavData.value);
 }
 // 隐藏扩展区
 function handleMouseLeave() {
     setTimeout(() => {
-        // isShowExtendNav.value = false;
+        isShowExtendNav.value = false;
     }, 200);
 }
 </script>
 <style lang="less" scoped>
-// @import '../assets/common.less';
 
 @iconWidth: 40px;
 @originBackgroundColor: rgba(22, 22, 23, 0.8);
@@ -121,6 +110,7 @@ function handleMouseLeave() {
 
         .logo {
             width: @iconWidth;
+            text-align: left;
         }
 
         .search {
