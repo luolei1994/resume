@@ -20,17 +20,11 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="nav-item switch">
-                <!-- <i v-if="isClassic" class="fa-solid fa-toggle-off"></i>
-                    <i v-else class="fa-solid fa-toggle-on"></i> -->
                 <Switch v-model="isClassic"></Switch>
             </div>
         </div>
         <Transition name="pull">
-            <div class="nav-extend" v-if="isShowExtendNav">
-                <div class="nav-extend-item" v-for="item in extendNavData.data.content">
-                    <div class="nav-extend-item-name">{{item.name}}</div>
-                </div>
-            </div>
+            <ExtendNav :isShowExtendNav="isShowExtendNav" :extendData="extendData"></ExtendNav>
         </Transition>
     </div>
 </template>
@@ -39,14 +33,8 @@
 import { ref, type Ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
-class NavData {
-    public name: string;
-    public data: InavDataItem;
-    public constructor (name: string, data: InavDataItem) {
-        this.name = name;
-        this.data = data;
-    }
-}
+import { NavData, type IExtendData } from '../entity/Nav';
+import ExtendNav from './ExtendNav.vue';
 const route = useRoute();
 const store = useStore();
 
@@ -59,33 +47,39 @@ let isClassic: Ref<boolean> = ref(false);
 // 是否展示扩展Nav区
 let isShowExtendNav: Ref<boolean> = ref(false);
 // 扩展区数据
-let extendNavData: Ref<NavData> = ref(new NavData('', { name: '', content: [] }));
+let extendNavData: NavData = new NavData('', []);   
 if (routeName == 'classic') {
     isClassic.value = true;
 }
+let extendData: Ref<IExtendData> = ref({ showMore: false, content: extendNavData});
 
 // 显示扩展区
 function handleMouseEnter(navItem: NavData) {
     isShowExtendNav.value = true;
-    extendNavData.value = navItem;
-    console.log(navItem);
+    if (navItem.data.length > 6) {
+        extendData.value.showMore = true;
+        extendData.value.content.data = navItem.data.filter((item, index) => {
+            return index <= 6;
+        })
+    }
+    else {
+        extendData.value.content = navItem;
+    }
+    console.log("extendData", extendData.value.content.data);
 }
 // 隐藏扩展区
 function handleMouseLeave() {
     setTimeout(() => {
-        isShowExtendNav.value = false;
+        // isShowExtendNav.value = false;
     }, 200);
 }
 </script>
 <style lang="less" scoped>
-@import '../assets/common.less';
+// @import '../assets/common.less';
 
-@navExtendHeight: 200px;
 @iconWidth: 40px;
 @originBackgroundColor: rgba(22, 22, 23, 0.8);
-@extendActiveBackgroundColor: #161617;
 @anmiteTime: 300ms;
-@colorAnimateTime: 500ms;
 .extend-active {
     background-color: @extendActiveBackgroundColor;
 }
@@ -122,7 +116,7 @@ function handleMouseLeave() {
                 color: @navHoverFontColor;
             }
 
-            transition: color @colorAnimateTime ease;
+            .common-nav-font-color-transition;
         }
 
         .logo {
@@ -138,23 +132,6 @@ function handleMouseLeave() {
         }
     }
 
-    .nav-extend {
-        position: absolute;
-        z-index: 5;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: @navExtendHeight;
-        background-color: @extendActiveBackgroundColor;
-
-        &-item {
-
-            &-name {
-                font-size: 14px;
-                color: @navFontColor; 
-            }
-        }
-    }
 
     .pull-enter-active {
         animation: pull-down @anmiteTime ease;

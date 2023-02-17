@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url';
+import path from 'path';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -14,7 +15,14 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
-            '@components': fileURLToPath(new URL('./src/components', import.meta.url))
+        }
+    },
+    css: {
+        preprocessorOptions: {
+            less: {
+                javascriptEnabled: true,
+                additionalData: `@import "${path.resolve(__dirname, './src/assets/common.less')}";`
+            }
         }
     }
 });
