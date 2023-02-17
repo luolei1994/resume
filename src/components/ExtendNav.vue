@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-extend" v-if="isShowExtendNav">
+    <div class="nav-extend" v-if="showExtendNav">
         <div class="nav-extend-container">
             <div class="nav-extend-name">{{ showData.name }}</div>
             <TransitionGroup name="list" tag="ul">
@@ -17,6 +17,7 @@ import { NavData } from '@/entity/Nav';
 const props = defineProps(['isShowExtendNav', 'extendNavData']);
 let showData: Ref<NavData> = ref(new NavData('', []));
 let lastShowData: NavData = new NavData('', []);
+let showExtendNav: Ref<boolean> = ref(false);
 // 清空内容以便重新运行动画
 watch(
     () => props.isShowExtendNav,
@@ -29,6 +30,9 @@ watch(
                 setShowData(lastShowData);
             }
         }
+        setTimeout(() => {
+            showExtendNav.value = newValue;
+        }, newValue ? 0 : 300);
     }
 );
 watch(
@@ -41,15 +45,15 @@ watch(
 function setShowData(value: NavData, notDelay: boolean = false) {
     setTimeout(
         () => {
-            showData.value = value;
+            showData.value = new NavData("", []);
+            setTimeout(() => {
+                showData.value = value;
+            }, notDelay ? 0 : 200);
         },
-        notDelay ? 0 : 300
+        notDelay ? 0 : 200
     );
 }
 
-showData.value = props.extendNavData;
-console.log('props.extendNavData', props.extendNavData);
-console.log('showData', showData.value);
 </script>
 <style lang="less" scoped>
 .nav-extend {
@@ -77,7 +81,7 @@ console.log('showData', showData.value);
                 color: @navFontColor;
                 font-size: 24px;
                 cursor: pointer;
-                margin-bottom: 8px;
+                margin-bottom: 10px;
                 &:hover {
                     color: @navHoverFontColor;
                 }
@@ -88,12 +92,13 @@ console.log('showData', showData.value);
 
     .list-enter-active,
     .list-leave-active {
-        transition: all 0.5s ease;
+        transition: all 200ms ease;
     }
     .list-enter-from,
     .list-leave-to {
+        // position: absolute;
         opacity: 0;
-        transform: translateX(30px);
+        transform: translateY(-10px);
     }
 }
 </style>

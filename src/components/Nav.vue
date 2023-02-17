@@ -55,13 +55,11 @@ if (routeName == 'classic') {
 function handleMouseEnter(navItem: NavData) {
     isShowExtendNav.value = true;
     extendNavData.value = navItem;
-    console.log("extendNavData", extendNavData.value);
+    // console.log("extendNavData", extendNavData.value);
 }
 // 隐藏扩展区
 function handleMouseLeave() {
-    setTimeout(() => {
-        isShowExtendNav.value = false;
-    }, 200);
+    isShowExtendNav.value = false;
 }
 </script>
 <style lang="less" scoped>
