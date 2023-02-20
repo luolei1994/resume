@@ -3,7 +3,7 @@
     "data": [
         {
             "name": "技术栈",
-            "score": true,
+            "showScore": true,
             "scoreInfo": "score",
             "scoreText": "技术水平",
             "data": [
@@ -41,7 +41,7 @@
         },
         {
             "name": "任职经历",
-            "score": true,
+            "showScore": true,
             "scoreInfo": "duration",
             "scoreText": "任职时间",
             "data": [
@@ -81,19 +81,19 @@
         },
         {
             "name": "项目经历",
-            "score": true,
+            "showScore": true,
             "scoreInfo": "score",
             "scoreText": "项目难度/项目时间",
             "data": []
         },
         {
             "name": "关于我",
-            "score": false,
+            "showScore": false,
             "data": [
                 {
                     "name": "联系方式",
                     "router": "",
-                    "data": {
+                    "detail": {
                         "电子邮箱": "18014737128@163.com",
                         "电话": "18014737128",
                         "github": "https://github.com/luolei1994"
@@ -102,7 +102,7 @@
                 {
                     "name": "个人信息",
                     "router": "",
-                    "data": {
+                    "detail": {
                         "姓名": "罗磊",
                         "年龄": "29",
                         "坐标": "南京"
