@@ -19,24 +19,26 @@
                     </TransitionGroup>
                 </div>
             </div>
-            <div v-if="showData.showScore" class="nav-extend-score-container">
+            <div
+                v-if="showData.showScore"
+                class="nav-extend-score-container"
+            >
                 <div class="nav-extend-score-name nav-extend-info-font">
                     {{ showData.scoreText }}
                 </div>
-                <TransitionGroup name="list" tag="ul">
-                    <div
-                        class="nav-extend-score-name-item"
-                        v-for="item in showData.data"
-                        :key="item.name"
-                    >
-                        <div class="nav-extend-name-item-score">
-                            <div
-                                class="nav-extend-item-score-bar"
-                                :style="`width: ${getScore(showData, item)}%;`"
-                            ></div>
-                        </div>
-                    </div>
-                </TransitionGroup>
+                <div
+                    class="nav-extend-score-name-item"
+                    v-for="item in showData.data"
+                    :key="item.name"
+                >
+                    <!-- <div class="nav-extend-name-item-score">
+                        <div
+                            class="nav-extend-item-score-bar"
+                            :style="`width: ${getScore(showData, item)}%;`"
+                        ></div>
+                    </div> -->
+                    <Bar :score="getScore(showData, item)" :scoreText="item.scoreText"></Bar>
+                </div>
             </div>
         </div>
     </div>
@@ -44,6 +46,7 @@
 <script lang="ts" setup>
 import { ref, watch, type Ref } from "vue";
 import { NavData, type INavDataItem } from "@/entity/Nav";
+import Bar from "@/components/common/Bar.vue";
 
 const props = defineProps(["isShowExtendNav", "extendNavData"]);
 let showData: Ref<NavData> = ref(new NavData("", []));
@@ -56,7 +59,10 @@ watch(
         if (newValue == false) {
             lastShowData = new NavData(
                 showData.value.name,
-                showData.value.data
+                showData.value.data,
+                showData.value.showScore,
+                showData.value.scoreInfo,
+                showData.value.scoreText
                 // showData.value
             );
             showData.value = new NavData("", []);
@@ -109,7 +115,8 @@ function getScore(data: NavData, item: INavDataItem): number {
         } else if (data.scoreInfo == "date") {
         }
     }
-    return score;
+    console.log("score", score);
+    return ref(score).value;
 }
 </script>
 <style lang="less" scoped>
@@ -172,8 +179,10 @@ function getScore(data: NavData, item: INavDataItem): number {
                     display: flex;
                     align-items: center;
                     .nav-extend-item-score-bar {
+                        width: 0;
                         background-color: #fff;
                         height: 10px;
+                        transition: width 800ms ease;
                     }
                 }
             }
