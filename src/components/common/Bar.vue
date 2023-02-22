@@ -1,8 +1,16 @@
 <template>
     <div class="common-bar">
-        <div class="common-bar-container">
-            <div class="common-bar-bar" :style="`width: ${barWidth}%;`" @mouseenter="showScoreText"></div>
-            <div v-if="scoreText" class="common-bar-text">{{ scoreText }}</div>
+        <div
+            class="common-bar-container"
+            @mouseenter="showScoreText"
+            @mouseleave="hideScoreText"
+        >
+            <div class="common-bar-bar" :style="`width: ${barWidth}%;`"></div>
+            <Transition name="score">
+                <div v-if="isShowScoreText" class="common-bar-text">
+                    {{ scoreText || score }}
+                </div>
+            </Transition>
         </div>
     </div>
 </template>
@@ -15,15 +23,15 @@ const props = defineProps({
     },
     scoreText: {
         type: String,
-        required: false
+        required: false,
     },
     animateDelay: {
         type: Number,
         required: false,
     },
 });
-console.log("scoreText", props.scoreText);
 let barWidth: Ref<number> = ref(0);
+let isShowScoreText: Ref<boolean> = ref(false);
 watch(
     () => props.score,
     (newValue) => {
@@ -35,8 +43,11 @@ watch(
         immediate: true,
     }
 );
-function showScoreText () {
-
+function showScoreText() {
+    isShowScoreText.value = true;
+}
+function hideScoreText() {
+    isShowScoreText.value = false;
 }
 </script>
 <style lang="less" scoped>
@@ -49,6 +60,24 @@ function showScoreText () {
             height: 10px;
             background-color: #fff;
             transition: width 500ms ease;
+        }
+        .common-bar-text {
+            position: absolute;
+            font-size: @commonFontSize;
+            color: #fff;
+            padding: 5px 0 0 0;
+            cursor: pointer;
+        }
+
+        .score-enter-active,
+        .score-leave-active {
+            transition: all 100ms ease;
+        }
+        .score-enter-from,
+        .score-leave-to {
+            // position: absolute;
+            opacity: 0;
+            transform: translateY(-10px);
         }
     }
 }

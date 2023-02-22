@@ -7,6 +7,8 @@ export interface INavDataItem {
     description?: string;
     router?: string;
     detail?: object;
+    date?: string;
+    reasonOfLeft?: string;
 }
 
 export class NavData {

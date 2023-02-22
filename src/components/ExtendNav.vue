@@ -19,10 +19,7 @@
                     </TransitionGroup>
                 </div>
             </div>
-            <div
-                v-if="showData.showScore"
-                class="nav-extend-score-container"
-            >
+            <div v-if="showData.showScore" class="nav-extend-score-container">
                 <div class="nav-extend-score-name nav-extend-info-font">
                     {{ showData.scoreText }}
                 </div>
@@ -37,7 +34,10 @@
                             :style="`width: ${getScore(showData, item)}%;`"
                         ></div>
                     </div> -->
-                    <Bar :score="getScore(showData, item)" :scoreText="item.scoreText"></Bar>
+                    <Bar
+                        :score="getScore(showData, item)"
+                        :scoreText="item.scoreText"
+                    ></Bar>
                 </div>
             </div>
         </div>
@@ -47,6 +47,7 @@
 import { ref, watch, type Ref } from "vue";
 import { NavData, type INavDataItem } from "@/entity/Nav";
 import Bar from "@/components/common/Bar.vue";
+import moment from "moment";
 
 const props = defineProps(["isShowExtendNav", "extendNavData"]);
 let showData: Ref<NavData> = ref(new NavData("", []));
@@ -112,11 +113,21 @@ function getScore(data: NavData, item: INavDataItem): number {
     if (data.showScore) {
         if (data.scoreInfo == "score") {
             score = item.score as number;
-        } else if (data.scoreInfo == "date") {
+        } else if (data.scoreInfo == "duration") {
+            let dateArr: Array<string> = (item.date || "").split(" ~ ");
+            let startDate = moment(dateArr[0], "YYYY.MM");
+            let endDate = moment(dateArr[1], "YYYY.MM");
+            if (dateArr[1] == "至今") {
+                endDate = moment();
+            }
+            let years: number = moment
+                .duration(endDate.diff(startDate))
+                .asYears();
+            score = years * 40;
+            item.scoreText = item.date;
         }
     }
-    console.log("score", score);
-    return ref(score).value;
+    return score;
 }
 </script>
 <style lang="less" scoped>
