@@ -153,7 +153,7 @@ function getScore(data: NavData, item: INavDataItem): number {
 
         .nav-extend-info-font {
             font-size: 12px;
-            color: #86868b;
+            color: @infoFontColor;
             margin-bottom: 20px;
         }
 

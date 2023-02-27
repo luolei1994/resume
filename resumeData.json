@@ -6,36 +6,37 @@
             "showScore": true,
             "scoreInfo": "score",
             "scoreText": "技术水平",
+            "id": "technologyStack",
             "data": [
                 {
                     "name": "JavaScript",
                     "router": "",
                     "score": 100,
-                    "description": ""
+                    "description": "熟悉JavaScript，包括ES6、常用设计模式等，不使用框架也能完成正常开发任务"
                 },
                 {
                     "name": "TypeScript",
                     "router": "",
                     "score": 40,
-                    "description": ""
+                    "description": "了解TypeScript，使用TS 做过个人网站"
                 },
                 {
                     "name": "jQuery",
                     "router": "",
                     "score": 70,
-                    "description": ""
+                    "description": "熟悉jQuery，熟练使用、封装jQuery插件 （约 3 年开发经验）"
                 },
                 {
                     "name": "Vue",
                     "router": "",
                     "score": 95,
-                    "description": ""
+                    "description": "熟悉Vue，写过简单的Vue框架插件，了解底层原理 （ 约2年Vue2.x经验， 1年Vue3.x经验）"
                 },
                 {
                     "name": "React",
                     "router": "",
                     "score": 20,
-                    "description": ""
+                    "description": "了解React，使用 React做过一些demo"
                 }
             ]
         },
@@ -44,6 +45,7 @@
             "showScore": true,
             "scoreInfo": "duration",
             "scoreText": "任职时间",
+            "id": "job",
             "data": [
                 {
                     "name": "南京博琨信息科技有限公司",
@@ -72,15 +74,62 @@
             ]
         },
         {
-            "name": "项目经历",
-            "showScore": true,
+            "name": "主要项目经历",
+            "showScore": false,
             "scoreInfo": "score",
             "scoreText": "项目难度/项目时间",
-            "data": []
+            "id": "project",
+            "data": [
+                {
+                    "name": "资讯语音播报-移动端app",
+                    "technologyStack": "jQuery、Less",
+                    "description": "基于阿里云的文字转语音接口，采用纯前端的方式，在所有资讯新闻页面添加语音播报功能。",
+                    "date": "2019-05",
+                    "role": "我负责整个项目的从预研到最终落地的所有前端技术工作。",
+                    "achievement": "此项目成为涨乐app团队第一个音频/视频相关的成功经验。其中技术难点包括audio状态、分段加载、预加载、按标点分句、计算语音总时长、进度条与语音进度同步等。",
+                    "assets": {
+                        "images": []
+                    }
+                },
+                {
+                    "name": "Bizark Assistant Chrome Extension-PC 网页端",
+                    "technologyStack": "Vue、iView、SCSS、Axios",
+                    "description": "此项目是给公司运营人员开发的自用插件，可指定每日自动下载Amazon指定时间的指定报表，可指定时间区间分片下载，下载的文件自动上传公司服务器、并将下载记录和数据存储在浏览器本地缓存中，以便随时查看。",
+                    "date": "2021-03 ",
+                    "role": "我负责整个项目的从预研到最终落地的所有前端技术工作。",
+                    "achievement": "此项目成为涨乐app团队第一个音频/视频相关的成功经验。其中技术难点包括audio状态、分段加载、预加载、按标点分句、计算语音总时长、进度条与语音进度同步等。",
+                    "assets": {
+                        "images": []
+                    }
+                },
+                {
+                    "name": "Bizark ERP项目-PC 网页端",
+                    "technologyStack": "Vue2/3、iView、Echarts、SCSS、Axios",
+                    "description": "公司的前端公用、业务代码库，包括前端项目的统一公用配置、公用UI组 件、公用功能库、所有业务代码等。",
+                    "date": "2020-05(已有项目维护)",
+                    "role": "我负责整个系统的前端维护与新组件开发，后期还进行了 Vue2->Vue3 的版本升级",
+                    "achievement": "开发了基于Vue函数式组件的自动生成元素组件、基于iView Upload组件的文件上传，基于iView Input组件的点击搜索，基于LocalStorage的订单标记功能，列表搜索组件，全系统Vue2升级Vue3等。",
+                    "assets": {
+                        "images": []
+                    }
+                },
+                {
+                    "name": "靓仓购物网-PC 网页端",
+                    "technologyStack": "Spring、SpringMVC、MyBatis、jQuery、jQueryUI、RequireJS",
+                    "description": " 一个小型的外包项目，客户要求模仿一个现有的成熟商城。包含登录注册、购买、用户开店、后台管理等功能，能够兼容主流浏览器（含IE8）以及移动端、功能比较全面的小型商城系统。",
+                    "date": "2017-08",
+                    "role": "我负责与客户对接需求，并实现整个系统。",
+                    "achievement": "从数据库表设计到前端页面设计开发由我一个人完成，数据库前期使用MySQL，后期换成Oracle，后台使用Spring + SpringMVC + MyBatis，前端大量使用了我自己封装的组件，主要使用jQuery，还使用了一些jQueryUI的组件。",
+                    "assets": {
+                        "images": []
+                    }
+                }
+            ]
         },
         {
             "name": "关于我",
             "showScore": false,
+            "id": "about",
             "data": [
                 {
                     "name": "联系方式",

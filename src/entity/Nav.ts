@@ -17,18 +17,21 @@ export class NavData {
     showScore: boolean;
     scoreInfo?: string;
     scoreText?: string;
+    id?: string;
     constructor(
         name: string,
         data: Array<INavDataItem>,
         showScore = false,
         scoreInfo = "",
-        scoreText = ""
+        scoreText = "",
+        id = "",
     ) {
         this.name = name;
         this.data = data;
         this.showScore = showScore;
         this.scoreInfo = scoreInfo;
         this.scoreText = scoreText;
+        this.id = id;
     }
 
     // [Symbol.iterator]() {
