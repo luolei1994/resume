@@ -5,7 +5,7 @@
             "name": "技术栈",
             "showScore": true,
             "scoreInfo": "score",
-            "scoreText": "技术水平",
+            "scoreText": "自我评价",
             "id": "technologyStack",
             "data": [
                 {
@@ -29,7 +29,7 @@
                 {
                     "name": "Vue",
                     "router": "",
-                    "score": 95,
+                    "score": 80,
                     "description": "熟悉Vue，写过简单的Vue框架插件，了解底层原理 （ 约2年Vue2.x经验， 1年Vue3.x经验）"
                 },
                 {
