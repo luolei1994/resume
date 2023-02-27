@@ -12,6 +12,7 @@
                     class="nav-item"
                     v-for="navItem in resumeData"
                     @mouseenter="handleMouseEnter(navItem)"
+                    @click="handleClick(navItem.id || '')"
                 >
                     <a class="nav-item-name">{{ navItem.name }}</a>
                 </div>
@@ -35,6 +36,7 @@ import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import { NavData } from '../entity/Nav';
 import ExtendNav from './ExtendNav.vue';
+import Utils from "@/utils/Utils";
 const route = useRoute();
 const store = useStore();
 
@@ -60,6 +62,10 @@ function handleMouseEnter(navItem: NavData) {
 // 隐藏扩展区
 function handleMouseLeave() {
     isShowExtendNav.value = false;
+}
+// 点击跳转
+function handleClick (id: string) {
+    Utils.scrollIntoElement(id);
 }
 </script>
 <style lang="less" scoped>

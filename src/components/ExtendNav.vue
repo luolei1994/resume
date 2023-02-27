@@ -12,7 +12,7 @@
                             v-for="item in showData.data"
                             :key="item.name"
                         >
-                            <div class="nav-extend-item-name">
+                            <div class="nav-extend-item-name" @click="handleClick(item.name)">
                                 {{ item.name }}
                             </div>
                         </div>
@@ -48,6 +48,7 @@ import { ref, watch, type Ref } from "vue";
 import { NavData, type INavDataItem } from "@/entity/Nav";
 import Bar from "@/components/common/Bar.vue";
 import moment from "moment";
+import Utils from "@/utils/Utils";
 
 const props = defineProps(["isShowExtendNav", "extendNavData"]);
 let showData: Ref<NavData> = ref(new NavData("", []));
@@ -128,6 +129,9 @@ function getScore(data: NavData, item: INavDataItem): number {
         }
     }
     return score;
+}
+function handleClick (name: string) {
+    Utils.scrollIntoElement(name);
 }
 </script>
 <style lang="less" scoped>

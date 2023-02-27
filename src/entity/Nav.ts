@@ -9,6 +9,7 @@ export interface INavDataItem {
     detail?: object;
     date?: string;
     reasonOfLeft?: string;
+    id?: string;
 }
 
 export class NavData {

@@ -2,7 +2,7 @@
     <div class="technology-stack">
         <div class="tech-title">{{tecData.name}}</div>
         <div class="tech-item" v-for="item in tecList">
-            <div class="tech-item-title">{{ item.name }}</div>
+            <div class="tech-item-title" :id="item.name">{{ item.name }}</div>
             <div class="tech-item-description">{{ item.description }}</div>
         </div>
     </div>
