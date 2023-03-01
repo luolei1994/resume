@@ -1,22 +1,31 @@
 <template>
     <div class="home">
         <div class="home-image">
-            <img class="home-image-image" src="../assets/images/nav-1.jpg">
+            <img class="home-image-image" src="../assets/images/nav-1.jpg" />
         </div>
         <div class="content-container">
-            <TechnologyStack :id="tecData.id" :tecData="tecData"></TechnologyStack>
+            <TechnologyStack
+                class="content-item"
+                :id="tecData.id"
+                :tecData="tecData"
+            ></TechnologyStack>
+            <Company class="content-item" :id="companyData.id" :companyData="companyData"></Company>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import TechnologyStack from './TechnologyStack.vue';
-import type { NavData } from '../entity/Nav';
-import { useStore } from 'vuex';
+import TechnologyStack from "./TechnologyStack.vue";
+import Company from "./Company.vue";
+import type { NavData } from "../entity/Nav";
+import { useStore } from "vuex";
 const store = useStore();
 const resumeData: Array<NavData> = store.state.resumeData;
-const tecData = resumeData.find(item => {
+const tecData = resumeData.find((item) => {
     return item.name == "技术栈";
-}) || { id : "" };
+}) || { id: "" };
+const companyData = resumeData.find((item) => {
+    return item.name == "任职经历";
+}) || { id: "" };
 </script>
 <style lang="less" scoped>
 .home {
@@ -39,6 +48,9 @@ const tecData = resumeData.find(item => {
     .content-container {
         width: @contentWidth;
         margin: auto;
+        .content-item {
+            margin-bottom: 50px;
+        }
     }
 }
 </style>
