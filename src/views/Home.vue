@@ -9,13 +9,23 @@
                 :id="tecData.id"
                 :tecData="tecData"
             ></TechnologyStack>
-            <Company class="content-item" :id="companyData.id" :companyData="companyData"></Company>
+            <Company
+                class="content-item"
+                :id="companyData.id"
+                :companyData="companyData"
+            ></Company>
+            <Project
+                class="content-item"
+                :id="projectData.id"
+                :projectData="projectData"
+            ></Project>
         </div>
     </div>
 </template>
 <script setup lang="ts">
 import TechnologyStack from "./TechnologyStack.vue";
 import Company from "./Company.vue";
+import Project from "./Project.vue";
 import type { NavData } from "../entity/Nav";
 import { useStore } from "vuex";
 const store = useStore();
@@ -25,6 +35,9 @@ const tecData = resumeData.find((item) => {
 }) || { id: "" };
 const companyData = resumeData.find((item) => {
     return item.name == "任职经历";
+}) || { id: "" };
+const projectData = resumeData.find((item) => {
+    return item.name == "主要项目经历";
 }) || { id: "" };
 </script>
 <style lang="less" scoped>
