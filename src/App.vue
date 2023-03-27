@@ -14,13 +14,13 @@ let showScroller: Ref<boolean> = ref(false);
     }
 };
 function scrollTop() {
-    Utils.scrollIntoElement("nav");
+    Utils.scrollIntoElement("homeImage");
 }
 </script>
 
 <template>
     <div class="container">
-        <Nav id="nav"></Nav>
+        <Nav class="nav" id="nav"></Nav>
         <div class="view-container">
             <RouterView></RouterView>
         </div>
@@ -37,6 +37,13 @@ function scrollTop() {
 @import "./assets/common.less";
 .container {
     position: relative;
+    .nav {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
     .view-container {
         background-color: #6e6e73;
     }

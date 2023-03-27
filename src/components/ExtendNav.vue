@@ -40,12 +40,26 @@
                     ></Bar>
                 </div>
             </div>
+            <div class="nav-extend-detail-container" v-if="showData.showDetail">
+                <div class="nav-extend-detail-name nav-extend-info-font">
+                    {{ showData.scoreText }}
+                </div>
+                <div
+                    class="nav-extend-detail-name-item"
+                    v-for="item in showData.data"
+                    :key="item.name"
+                >
+                    <div v-for="key in getKeys(item.detail || {})" class="nav-extend-detail-name-data">
+                        <span v-html="getFullText(item.detail || {}, key)"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script lang="ts" setup>
 import { ref, watch, type Ref } from "vue";
-import { NavData, type INavDataItem } from "@/entity/Nav";
+import { NavData, type INavDataItem, type DetailType } from "@/entity/Nav";
 import Bar from "@/components/common/Bar.vue";
 import moment from "moment";
 import Utils from "@/utils/Utils";
@@ -64,7 +78,8 @@ watch(
                 showData.value.data,
                 showData.value.showScore,
                 showData.value.scoreInfo,
-                showData.value.scoreText
+                showData.value.scoreText,
+                showData.value.showDetail || false
                 // showData.value
             );
             showData.value = new NavData("", []);
@@ -130,8 +145,25 @@ function getScore(data: NavData, item: INavDataItem): number {
     }
     return score;
 }
-function handleClick (name: string) {
+function handleClick (name: string): void {
     Utils.scrollIntoElement(name);
+}
+function getKeys (detail: object): Array<string> {
+    return Object.keys(detail);
+}
+function getFullText (target: Object, key: string): string {
+    let value = "";
+    let targetValue: string | DetailType = target[key];
+    if (typeof targetValue == "string") {
+        value = targetValue as string;
+    }
+    else {
+        let typeValue: DetailType = targetValue as DetailType;
+        if (typeValue.type == "link") {
+            value = `<a class="common-link" target="__blank" href="${typeValue.value}">${typeValue.value}</a>`
+        }
+    }
+    return `${key}: ${value}`;
 }
 </script>
 <style lang="less" scoped>
@@ -200,6 +232,13 @@ function handleClick (name: string) {
                         transition: width 800ms ease;
                     }
                 }
+            }
+        }
+
+        .nav-extend-detail-container {
+            .nav-extend-detail-name-item {
+                padding: 5px 0;
+                color: @navFontColor;
             }
         }
     }

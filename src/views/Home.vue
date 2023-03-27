@@ -1,10 +1,7 @@
 <template>
     <div class="home">
         <div class="home-image">
-            <img class="home-image-image" src="../assets/images/nav-1.jpg" />
-        </div>
-        <div class="test" style="background: #fff;">
-            <RuleEditor></RuleEditor>
+            <img id="homeImage" class="home-image-image" src="../assets/images/nav-1.jpg" />
         </div>
         <div class="content-container">
             <TechnologyStack
@@ -65,7 +62,7 @@ const projectData = resumeData.find((item) => {
         width: @contentWidth;
         margin: auto;
         .content-item {
-            margin-bottom: 50px;
+            padding-bottom: 50px;
         }
     }
 }

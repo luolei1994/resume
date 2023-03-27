@@ -5,7 +5,7 @@
     >
         <div class="nav-content">
             <div class="nav-item logo">
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-house" @click="handleHome"></i>
             </div>
             <div class="nav-auto-container">
                 <div
@@ -17,12 +17,12 @@
                     <a class="nav-item-name">{{ navItem.name }}</a>
                 </div>
             </div>
-            <div class="nav-item search">
+            <!-- <div class="nav-item search">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="nav-item switch">
                 <Switch v-model="isClassic"></Switch>
-            </div>
+            </div> -->
         </div>
         <Transition name="pull">
             <ExtendNav :isShowExtendNav="isShowExtendNav" :extendNavData="extendNavData"></ExtendNav>
@@ -67,11 +67,14 @@ function handleMouseLeave() {
 function handleClick (id: string) {
     Utils.scrollIntoElement(id);
 }
+function handleHome () {
+    Utils.scrollIntoElement("homeImage");
+}
 </script>
 <style lang="less" scoped>
 
 @iconWidth: 40px;
-@originBackgroundColor: rgba(22, 22, 23, 0.8);
+@originBackgroundColor: #454545;
 @anmiteTime: 300ms;
 .extend-active {
     background-color: @extendActiveBackgroundColor;

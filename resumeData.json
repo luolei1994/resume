@@ -129,24 +129,23 @@
         {
             "name": "关于我",
             "showScore": false,
+            "showDetail": true,
+            "scoreText": "基本信息",
             "id": "about",
             "data": [
                 {
-                    "name": "联系方式",
-                    "router": "",
-                    "detail": {
-                        "电子邮箱": "18014737128@163.com",
-                        "电话": "18014737128",
-                        "github": "https://github.com/luolei1994"
-                    }
-                },
-                {
-                    "name": "个人信息",
+                    "name": "",
                     "router": "",
                     "detail": {
                         "姓名": "罗磊",
                         "年龄": "29",
-                        "坐标": "南京"
+                        "坐标": "南京",
+                        "电子邮箱": "18014737128@163.com",
+                        "电话": "18014737128",
+                        "github": {
+                            "type": "link",
+                            "value": "https://github.com/luolei1994"
+                        }
                     }
                 }
             ]

@@ -19,19 +19,22 @@ export class NavData {
     scoreInfo?: string;
     scoreText?: string;
     id?: string;
+    showDetail?: boolean;
     constructor(
         name: string,
         data: Array<INavDataItem>,
         showScore = false,
         scoreInfo = "",
         scoreText = "",
-        id = "",
+        showDetail = false,
+        id = ""
     ) {
         this.name = name;
         this.data = data;
         this.showScore = showScore;
         this.scoreInfo = scoreInfo;
         this.scoreText = scoreText;
+        this.showDetail = showDetail;
         this.id = id;
     }
 
@@ -45,4 +48,9 @@ export class NavData {
     //         },
     //     };
     // }
+}
+
+export interface DetailType {
+    type: string
+    value: string
 }
