@@ -3,6 +3,9 @@
         <div class="home-image">
             <img class="home-image-image" src="../assets/images/nav-1.jpg" />
         </div>
+        <div class="test" style="background: #fff;">
+            <RuleEditor></RuleEditor>
+        </div>
         <div class="content-container">
             <TechnologyStack
                 class="content-item"
