@@ -55,7 +55,11 @@ const projectData = resumeData.find((item) => {
         .home-image-image {
             // width: 3008px;
             width: 100%;
+            display: block;
             transform: scale(2);
+            max-width: 1920px;
+            // min-width: 
+            margin: auto;
         }
     }
     .content-container {
